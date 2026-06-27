@@ -1,84 +1,172 @@
 # Gold Price Prediction using Prophet
 
-A focused Jupyter notebook project demonstrating how to forecast historical gold prices using Prophet. This repository contains a single notebook:
+## 📌 Project Overview
 
-- `Gold Price Prediction using Prophet.ipynb`
+This project demonstrates how to forecast **gold prices** using **Facebook Prophet**, a powerful time series forecasting library developed by Meta. The model is trained on historical gold price data and predicts future gold prices by automatically learning trends and seasonal patterns.
 
-This is not a web application — it's an interactive notebook for exploration, training, evaluation, and short-term forecasting.
+The project covers the complete workflow for time series forecasting, including data loading, preprocessing, visualization, model training, evaluation, and future prediction.
 
-## Contents
-- `Gold Price Prediction using Prophet.ipynb` — Jupyter notebook that:
-  - Downloads/loads the gold price dataset (via KaggleHub or a local CSV)
-  - Preprocesses the data for Prophet (`ds`, `y`)
-  - Splits into train/test (90%/10%)
-  - Trains a Prophet model and evaluates using RMSE
-  - Visualizes forecasts and components (trend, seasonality)
-  - Generates future forecasts and exports results to CSV
+---
 
-## Dataset
-The notebook uses a historical gold price dataset (columns include `Date` and `GLD`). The notebook can download the dataset from Kaggle using KaggleHub, or you can provide a local CSV file.
+## 📊 Dataset
 
-Expected important columns:
-- `Date` — date of observation
-- `GLD` — gold price (target)
+**Dataset:** Gold Price Data
 
-## Requirements
-Install dependencies in a Python environment. Example (pip):
+The dataset contains historical gold price information with the following important columns:
 
-```bash
-pip install --upgrade pip
-pip install pandas matplotlib plotly prophet statsmodels kagglehub jupyterlab
-```
+- **Date** – Date of observation
+- **GLD** – Gold price (target variable)
 
-Notes:
-- Prophet may require a specific backend (cmdstanpy or pystan) depending on your platform; if pip install fails, consider the conda-forge build:
+The dataset is downloaded directly from Kaggle using the `kagglehub` library.
 
-```bash
-conda install -c conda-forge prophet
-```
+---
 
-## Running the notebook
-1. Clone the repository or download the notebook file.
-2. Ensure dependencies are installed.
-3. If the notebook downloads the dataset from Kaggle:
-   - Provide Kaggle credentials (`kaggle.json`) or configure KaggleHub as required by that library.
-   - Or place the dataset CSV into a `data/` folder and update the notebook path accordingly.
-4. Launch Jupyter:
+## 🚀 Features
 
-```bash
-jupyter lab
-# or
-jupyter notebook
-```
+- Download dataset directly from Kaggle
+- Data preprocessing for Prophet
+- Time series visualization
+- Train-test split (90% training, 10% testing)
+- Gold price forecasting using Prophet
+- Interactive forecast visualization
+- Trend and seasonality analysis
+- Model evaluation using RMSE
+- Future gold price prediction
+- Export future predictions to CSV
 
-5. Open `Gold Price Prediction using Prophet.ipynb` and run the cells in order.
+---
 
-Tip: You can also upload the notebook to Colab (some Kaggle download cells may need adaptation or manual dataset upload).
+## 🛠 Technologies Used
 
-## Notebook structure (high level)
-1. Data download & loading
-2. Preprocessing for Prophet (`ds`, `y`)
-3. Exploratory visualization (trend & seasonality)
-4. Train/test split (90% / 10%)
-5. Train Prophet model
-6. Forecast on test set + compute RMSE
-7. Visualize forecasts & components
-8. Retrain on full data and produce future forecasts
-9. Export predictions to CSV
+- Python
+- Pandas
+- Prophet (Facebook Prophet)
+- Plotly
+- Matplotlib
+- KaggleHub
+- Statsmodels
 
-## Evaluation
-- The notebook reports Root Mean Squared Error (RMSE) on the test partition. Lower RMSE indicates tighter fit to actual prices.
+---
 
-## Suggested next steps / improvements
-- Hyperparameter tuning for Prophet (changepoints, seasonality modes)
-- Time series cross-validation (Prophet's cross-validation utilities)
-- Compare with ARIMA, SARIMAX, or LSTM models
-- Add external regressors (USD index, oil price, interest rates)
-- Create a small Streamlit app or dashboard for interactive forecasting
+## 📈 Workflow
 
-## License & Credits
-- Credit: Prophet (originally developed by Meta / Facebook)
-- Data source: Kaggle (refer to the dataset page for licensing)
+### 1. Download Dataset
 
-## Contact
-If you want this README updated, or need a requirements.txt / environment.yml added, tell me which files to add or which branch to use and I will update the repo.
+The dataset is downloaded automatically from Kaggle using KaggleHub.
+
+### 2. Load the Dataset
+
+Read the CSV file and inspect the data.
+
+### 3. Data Preprocessing
+
+Prophet requires the dataset to have two specific columns:
+
+- **ds** → Date column
+- **y** → Target value
+
+The original columns are renamed as:
+
+- `Date` → `ds`
+- `GLD` → `y`
+
+### 4. Data Visualization
+
+Visualize historical gold prices to observe:
+
+- Trend
+- Seasonality
+- Price fluctuations
+
+### 5. Train-Test Split
+
+The dataset is divided into:
+
+- **90% Training Data**
+- **10% Testing Data**
+
+This allows the model to be evaluated on unseen data.
+
+### 6. Train Prophet Model
+
+A Prophet model is initialized and trained using the training dataset.
+
+The model automatically learns:
+
+- Overall trend
+- Yearly seasonality
+- Weekly seasonality
+- Trend changes (changepoints)
+
+### 7. Forecast Gold Prices
+
+The trained model predicts gold prices for the testing period.
+
+The forecast includes:
+
+- **yhat** – Predicted gold price
+- **yhat_lower** – Lower confidence interval
+- **yhat_upper** – Upper confidence interval
+
+### 8. Visualize Forecast
+
+The project generates interactive visualizations showing:
+
+- Historical prices
+- Forecasted prices
+- Confidence intervals
+
+It also displays the forecast components:
+
+- Trend
+- Weekly seasonality
+- Yearly seasonality
+
+### 9. Evaluate the Model
+
+The model's performance is evaluated using **Root Mean Squared Error (RMSE)**.
+
+A lower RMSE indicates that the predicted values are closer to the actual values.
+
+### 10. Future Forecasting
+
+After evaluation, the model can be retrained using the complete dataset to forecast future gold prices for any desired time period, such as:
+
+- Next 30 days
+- Next 90 days
+- Next 365 days
+
+Future predictions can also be saved as a CSV file for further analysis.
+
+---
+
+## 📉 Evaluation Metric
+
+The model uses **Root Mean Squared Error (RMSE)** to measure forecasting accuracy.
+
+RMSE calculates the average difference between the predicted and actual gold prices. Lower RMSE values indicate better model performance.
+
+---
+
+## 📌 Future Improvements
+
+- Hyperparameter tuning for Prophet
+- Time series cross-validation
+- Compare Prophet with ARIMA
+- Compare Prophet with LSTM
+- Incorporate external regressors (e.g., USD Index, Oil Prices)
+- Deploy the model using Streamlit
+- Build a real-time forecasting dashboard
+
+---
+
+## 🎯 Learning Outcomes
+
+Through this project, you will learn:
+
+- Time series forecasting concepts
+- Data preprocessing for Prophet
+- Forecast visualization techniques
+- Trend and seasonality analysis
+- Model evaluation using RMSE
+- Future forecasting using historical data
